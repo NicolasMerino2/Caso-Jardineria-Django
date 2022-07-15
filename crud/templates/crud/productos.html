@@ -25,22 +25,22 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item" id="navbar">
-                    <a class="nav-link" href="index.html">Inicio</a>
+                    <a class="nav-link" href="{% url 'home' %}">Inicio</a>
                 </li>
                 <li class="nav-item" id="navbar">
-                    <a class="nav-link" href="productos.html">Productos</a>
+                    <a class="nav-link" href="{% url 'productos' %}">Productos</a>
                 </li>
                 <li class="nav-item" id="navbar">
-                    <a class="nav-link" href="sobrenosotros.html">Nosotros</a>
+                    <a class="nav-link" href="{% url 'sobrenosotros' %}">Nosotros</a>
                 </li>
                 <li class="nav-item" id="navbar">
-                    <a class="nav-link" href="despacho.html">Mi pedido</a>
+                    <a class="nav-link" href="{% url 'despacho' %}">Mi pedido</a>
                 </li>
                 <li class="nav-item" id="navbar">
-                    <a class="nav-link" href="login.html">Login</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item" id="navbar">
-                    <a class="nav-link" href="contacto.html">Contactanos</a>
+                    <a class="nav-link" href="{% url 'contacto' %}">Contactanos</a>
                 </li>
                 <li class="submenu">
                     <img src="{% static 'crud/img/cart.png' %}" alt="" id="img-carrito">
@@ -75,17 +75,19 @@
    
     <div id="lista-producto" class="container">
         <h1 id="encabezado" class="encabezado text-center">Nuestros Productos</h1>
+        {% load humanize %}
         <div class="row">
             <div class="four columns">
                 {% for p in productos %} 
                 <div class="card">
-                     
-                    <img src="{% static 'crud/img/Macetero Conico.jpg' %}" class="u-full-width" alt="pendrive">
+                    {% if p.imagen %} 
+                    <img src="{{ p.imagen.url }}" class="u-full-width" alt="pendrive">
+                    {% endif %}
                     <div class="info-card">
-                        <h4>Macetero Cónico</h4>
-                        <p>Modelo cónico con Diseño rugoso.<br>
-                            Envio: Gratis</p>
-                        <p class="precio">$25.990<span class="u-pull-right">$19.990</span></p>
+                        <h4>{{ p.nombre | title }}</h4>
+                        <p>{{ p.descripcion }}.<br>
+                           </p>
+                        <p class="precio">$25.990<span class="u-pull-right">${{ p.precio | intcomma }}</span></p>
                         <a href="#" class="u-full-width button-primary button input agregar-carrito">Agregar Al
                             Carrito</a>
                          
