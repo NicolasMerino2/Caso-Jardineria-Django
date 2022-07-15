@@ -3,6 +3,18 @@
   color: #489113;
 }
 
+#Enviar{
+  background-color: #010b0f;
+  float: left;
+  width: auto;
+}
+
+#Cancelar{
+  background-color: #1a0303;
+  float: right;
+  width: auto;
+}
+
 header{
   background-image: url(https://fondosmil.com/fondo/26791.jpg);
 }
