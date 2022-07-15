@@ -9,6 +9,7 @@ class Planta(models.Model):
     precio = models.IntegerField()
     Descripcion = models.CharField (max_length=300)
     Tipo = models.CharField (max_length=100)
+    
     def __str__(self):
         return self.nombre
 
@@ -17,6 +18,7 @@ class Macetero(models.Model):
     precio = models.IntegerField()
     Descripcion = models.CharField (max_length=300)
     Tipo= models.CharField(max_length=100)
+    imagen = models.ImageField(verbose_name='Imagen',upload_to='productos',null=True,blank=True)
     
     def __str__(self):
         return self.nombre
@@ -30,7 +32,10 @@ class Tierra_de_Hoja(models.Model):
     def __str__(self):
         return self.nombre
 
-class Formulario (models.Model):
+class Formulario(models.Model):
     usuario = models.CharField(max_length=50)
     correo = models.CharField(max_length=100)
     contraseña = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.usuario
