@@ -1,0 +1,84 @@
+{% extends 'crud/base.html' %}
+{% load static%}
+
+{% block contenido %}   
+    <div class="container-form sign-up">
+        
+        <div class="welcome-back">
+            <div class="message">
+                <ul>
+                    <li><img id="IconoClima" src=""></li>
+                    <li id="Descripcion"></li>
+                    <li id="Temperatura"></li>
+                </ul>
+                <h2>Bienvenido</h2>
+                <p>Si ya tienes una cuenta por favor inicia sesion aqui</p>
+                <button class="sign-up-btn">Iniciar Sesion</button>
+            </div>
+        </div>
+        <form class="formulario">
+            <h2 class="create-account">Crea tu cuenta</h2>
+            <div class="iconos">
+                <div class="border-icon">
+                    <i class='bx bxl-instagram'></i>
+                </div>
+                <div class="border-icon">
+                    <i class='bx bxl-linkedin' ></i>
+                </div>
+                <div class="border-icon">
+                    <i class='bx bxl-facebook-circle' ></i>
+                </div>
+            </div>
+            <p class="cuenta-gratis">Crea tu cuenta gratis!</p>
+            <input type="text" placeholder="Nombre" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Contraseña" required>
+            <button type="submit"> <a id="registra" href="index.html">Registrarse</a></button>
+        </form>
+    </div>
+    <div class="container-form sign-in">
+        <form class="formulario">
+            <h2 class="create-account">Iniciar Sesión</h2>
+            <div class="iconos">
+                <div class="border-icon">
+                    <i class='bx bxl-instagram'></i>
+                </div>
+                <div class="border-icon">
+                    <i class='bx bxl-linkedin' ></i>
+                </div>
+                <div class="border-icon">
+                    <i class='bx bxl-facebook-circle' ></i>
+                </div>
+            </div>
+            <p class="cuenta-gratis">Aún no tienes una cuenta?</p>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Contraseña" required>
+            <button><a href="index.html">Iniciar Sesión</a></button>
+        </form>
+        <div class="welcome-back">
+            <div class="message">
+                <h2>Bienvenido de nuevo</h2>
+                <p>En el caso de aún no tener una cuenta, por favor registrarse aquí</p>
+                <button class="sign-in-btn">Registrarse</button>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script>
+        var Icono_Clima = document.getElementById("IconoClima")
+        var Temperatura = document.getElementById("Temperatura")
+        var Descripcion_clima = document.getElementById("Descripcion")
+        var Ubicacion_actual = navigator.geolocation.getCurrentPosition(function(data){
+            var latitud = data.coords.latitude
+            var longitud = data.coords.longitude
+            $.getJSON(`https://api.openweathermap.org/data/2.5/weather?lat=${latitud}&lon=${longitud}&units=metric&appid=cbc6e4864eaeb1415d242341fde7954e`,function(data){
+            var icono = data.weather[0].icon
+            Icono_Clima.setAttribute("src",`https://openweathermap.org/img/wn/${icono}@2x.png`)
+            Temperatura.innerHTML = data.main.temp+"°C"
+            Descripcion_clima.innerHTML = data.weather[0].description
+        })
+        }) 
+        </script>
+</body>
+
+{% endblock %}

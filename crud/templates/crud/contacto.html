@@ -1,0 +1,281 @@
+{% extends 'crud/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+ <!--navbar -->
+ <header class="container-fluid bg-light text-white text-center py-4" >
+    <ul>
+        <li><img id="IconoClima" src=""></li>
+        <li id="Descripcion"></li>
+        <li id="Temperatura"></li>
+      </ul>
+    <h1 class="d-1">Jardinería Happy Garden</h1>
+    <p id="Slogan">La Jardinería de todos, para todos</p>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+            <img class="img-logo-nav" src="{% static 'crud/img/Logo_happy_garden.png' %}" alt="Logo-Emp{% static 'crud
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item" id="navbar">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                </li>
+                <li class="nav-item" id="navbar">
+                    <a class="nav-link" href="productos.html">Productos</a>
+                </li>
+                <li class="nav-item" id="navbar">
+                    <a class="nav-link" href="sobrenosotros.html">Nosotros</a>
+                </li>
+                <li class="nav-item" id="navbar">
+                    <a class="nav-link" href="despacho.html">Mi pedido</a>
+                </li>
+                <li class="nav-item" id="navbar">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+                <li class="nav-item" id="navbar">
+                    <a class="nav-link" href="contacto.html">Contactanos</a>
+                </li>
+                <li class="submenu">
+                    <img src="{% static 'crud/img/cart.png' %}" alt="" id="img-carrito">
+                    <div id="carrito">
+                        <table id="lista-carrito" class="u-full-width">
+                            <thead>
+                                <tr>
+                                    <th>Imágen</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                    </div>
+                </li>
+
+            </ul>
+            <form class="d-flex text-black">
+                <input type="search" placeholder="Buscar..."/>
+                <a href="#" class="icon">
+                    <i class="fas fa-search"></i>
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<body>
+
+
+<div class="container mt-4" id="Formulario">
+    <div class="row">
+        <center>
+            <div class="col-md-6 mb-3">
+                
+                <form action="" method="get" enctype="text/plain">
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Formulario de contacto</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                            <label class="form-label fw-bold" for="inputRut">Ingrese Rut:</label>
+                            <input type="text" class="form-control" id="inputRut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT" maxlength="10" required>
+                            <script src="assets/js/validarRUT.js"></script>
+                        </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="nombre">Nombre</label>
+                                <input class="form-control" type="text" name="nombre" id="nombre"
+                                    placeholder="Ej: Esteban Jimenez" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="email">Email</label>
+                                <input class="form-control" type="email" name="email" id="email"
+                                    placeholder="Ej. correode@ejemplo.com" required>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="fw-bold col-sm-4 col-form-label" for="password">Contraseña</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="password" name="password" id="password"
+                                        placeholder="" minlength="6" maxlength="20" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="fono">Fono</label>
+                                <input class="form-control" type="tel" name="fono" id="fono"
+                                    pattern="+[0-9]{2} [0-9]{1} [0-9]{4} [0-9]{4}" maxlength="11">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="fecha_nac">Fecha Nacimiento</label>
+                                <input class="form-control" type="date" name="fecha_nac" id="fecha_nac"
+                                    min="1930-01-01" max="2004-12-31" value="2003-08-17">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="genero">Genero</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genero" id="femenino"
+                                        value="femenino" checked>
+                                    <label class="form-check-label" for="femenino">
+                                        Femenino
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genero" id="masculino"
+                                        value="masculino">
+                                    <label class="form-check-label" for="masculino">
+                                        Masculino
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genero" id="no_responde"
+                                        value="no responde">
+                                    <label class="form-check-label" for="no_responde">
+                                        Prefiere no responder
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold" for="comentarios">Comentarios</label>
+                                <textarea class="form-control" name="comentarios" id="comentarios" rows="8"
+                                    placeholder="Dejanos un comentario acerca de ti." minlength="50" maxlength="200"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="acepto_termino">
+                                    <label class="form-check-label" for="acepto_termino">Acepto términos y
+                                        condiciones</label>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                        <div class="card-footer text-center">
+                            <div class="form-group">
+                                <input type="submit" id="Enviar" class="btn btn-outline-primary m-2" value="Enviar">
+                                <input type="reset" id="Cancelar" class="btn btn-outline-warning m-2" value="Cancelar">
+                            </div>
+                        </div>
+                    </div>
+                
+                </form>
+        </center>
+        </div>
+    </div>
+</div>
+
+
+<footer class="site-footer bg-dark">
+    <div class="container-fluid bg-dark p-3 text-white">
+        <div class="row">
+            <div class="col-3 col-md-3">
+                <h6>HORARIO DE ATENCIÓN TIENDA WEB</h6>
+                <p class="text-justify">
+                    De Lunes a Viernes:
+                    De 10:00 AM a 21:00 PM
+                </p>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="footer-title">
+                    <h6>Encuentranos en</h6>
+                </div>
+                <div class="contact-info">
+                    <h6>Tienda:</h6>
+                    <p>Calle 19 #791 Las Condes</p>
+                    <p>Próximamente abriremos en más lugares!</p>
+                    <div class="phone">
+                        <h6>Contáctanos!:</h6>
+                        <p>Telófono de contacto: +56 9 9180 2910<br>
+                            Email: serviciohappygarden@jardineria.com
+                        </p>
+                        <br>
+                        <p><a href="" type="button"></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-2">
+                <h6>Enlaces Rápidos</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Politica de privacidad</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h4 class="card-title">Registrate con tu email!</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input class="form-control" type="email" id="email" name="email"
+                                placeholder="Ingresa tu correo electrónico">
+                            <div class="input-group-append">
+                                <button class="button" type="submit">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <ul class="nav">
+                            <li>
+                                <a class="nav-link" href="http://www.facebook.com" target="blank">
+                                    <span class="text-white fs-1">
+                                        <i class="fa-brands fa-facebook"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="http://www.instagram.com" target="blank">
+                                    <span class="text-white fs-1">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="http://www.twitter.com" target="blank">
+                                    <span class="text-white fs-1">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container col-3">
+        <div class="row">
+            <div>
+                <p class="copyright-text">Copyright © 2022 Todos los derechos reservados.
+                    <a href="index.html"><span class="logo">Happy Garden por siempre!</span></a>
+                </p>
+            </div>
+        </div>
+</footer>
+
+<script>
+    var Icono_Clima = document.getElementById("IconoClima")
+    var Temperatura = document.getElementById("Temperatura")
+    var Descripcion_clima = document.getElementById("Descripcion")
+    var Ubicacion_actual = navigator.geolocation.getCurrentPosition(function(data){
+        var latitud = data.coords.latitude
+        var longitud = data.coords.longitude
+        $.getJSON(`https://api.openweathermap.org/data/2.5/weather?lat=${latitud}&lon=${longitud}&units=metric&appid=cbc6e4864eaeb1415d242341fde7954e`,function(data){
+        var icono = data.weather[0].icon
+        Icono_Clima.setAttribute("src",`https://openweathermap.org/img/wn/${icono}@2x.png`)
+        Temperatura.innerHTML = data.main.temp+"°C"
+        Descripcion_clima.innerHTML = data.weather[0].description
+    })
+    }) 
+    </script>
+
+{% endblock %}
